@@ -14,6 +14,12 @@ const Navbar = () => {
       <li>
         <Link>About</Link>
       </li>
+      {user &&
+      <li>
+        <Link to='/bookings'>My Bookings</Link>
+
+      </li> }
+
     </>
   );
   return (
@@ -52,7 +58,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <a className="btn text-orange-500 outline px-5 bg-transparent rounded-sm outline-orange-500">Appointment</a>
-        {user && <Link onClick={logOut} className="btn btn-warning mr-3">Logout</Link>}
+        {user ? <Link onClick={logOut} className="btn btn-warning ml-3">Logout</Link> :<Link to='/login' className="btn btn-warning ml-3">Login</Link>}
       </div>
     </div>
   );
