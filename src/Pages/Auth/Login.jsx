@@ -1,13 +1,15 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import img from "../../assets/images/login/login.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
-import axios from "axios";
+import useAuth from "../../hooks/useAuth";
+// import { AuthContext } from "../../providers/AuthProvider";
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
-  const location = useLocation();
-  console.log(location);
-  const navigate = useNavigate();
+  
+  const {signIn} = useAuth();
+  // const {signIn} = useContext(AuthContext)
+    const location = useLocation()
+    console.log(location);
+    const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -16,12 +18,14 @@ const Login = () => {
     const password = form.password.value;
     // console.log(email, password);
 
-    signIn(email, password)
-      .then((result) => {
+    signIn(email,password)
+    .then(result => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
-      })
-      .catch((error) => console.error(error));
+        navigate(location?.state ? location?.state : '/')
+        
+    })
+    .catch(error => console.error(error))
   };
 
   return (
