@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import BookingRow from "./BookingRow";
-import axios from "axios";
+// import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Bookings = () => {
@@ -62,7 +62,7 @@ const Bookings = () => {
     //   .then((res) => res.json())
     //   .then((data) => setBookings(data));
     axiosSecure.get(url)
-    .then(res =>{ setBookings(res.data)})
+    .then(res => setBookings(res.data))
   }, [url, axiosSecure]);
   return (
     <div className="overflow-x-auto">
